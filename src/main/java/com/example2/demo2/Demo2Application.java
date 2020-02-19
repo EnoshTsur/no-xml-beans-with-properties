@@ -1,9 +1,9 @@
 package com.example2.demo2;
 
 import com.example2.demo2.configuration.EmployeeConfiguration;
-import com.example2.demo2.entities.Dev;
-import com.example2.demo2.entities.Hr;
-import com.example2.demo2.entities.QA;
+import com.example2.demo2.entities.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -18,17 +18,14 @@ public class Demo2Application {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(EmployeeConfiguration.class);
 
-        Dev dev = context.getBean(Dev.class);
-        QA qa = context.getBean(QA.class);
-        Hr hr = context.getBean(Hr.class);
+        Graphics graphics = context.getBean("graphics", Graphics.class);
+        Climber enosh = context.getBean("climber", Climber.class);
 
-        System.out.printf("QA: %d\n", qa.getSalary());
-        System.out.printf("HR: %d\n", hr.getSalary());
-        System.out.printf("Dev: %d\n", dev.getSalary());
 
-        System.out.printf("Dev Service: %s\n", dev.getMeetingService().getMeetingContext());
-        System.out.printf("Qa Service: %s\n", qa.getMeetingService().getMeetingContext());
-        System.out.printf("Dev Service: %s\n", hr.getMeetingService().getMeetingContext());
+        System.out.println(enosh.getEmail());
+        System.out.println(enosh.getSport());
+        System.out.println(enosh.getName());
+        System.out.println(enosh.getMeetingService().getMeetingContext());
     }
 
 }
